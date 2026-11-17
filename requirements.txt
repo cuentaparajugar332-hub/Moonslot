@@ -1,0 +1,4 @@
+# MOONSLOT — dependencias / requisitos
+# Aplicación Node.js, no Python. No requiere paquetes externos de npm ni pip.
+# Requisito de ejecución: Node.js 18 o superior.
+# Inicio: node server.js
