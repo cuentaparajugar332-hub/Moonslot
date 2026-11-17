@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0B0A14">
+  <meta name="description" content="Moonslot is a private workspace. Sign in with Google or GitHub to open yours.">
+  <title>Moonslot | Private workspace</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Moonslot home">
+      <img src="/assets/logo-mark.svg" alt="" width="30" height="30">
+      <span class="wordmark">Moon<em>slot</em></span>
+    </a>
+    <div id="account" class="account hidden">
+      <img id="user-avatar" class="avatar" alt="" width="32" height="32" referrerpolicy="no-referrer">
+      <span id="user-name" class="account-name"></span>
+      <button id="sign-out" class="btn btn-ghost" type="button">Sign out</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Signed-out view -->
+    <section id="view-auth" class="hero" aria-labelledby="auth-title">
+      <div class="hero-copy">
+        <h1 id="auth-title">Your private workspace, ready when you are.</h1>
+        <p class="lead">Sign in to open your Moonslot workspace. Use the Google or GitHub account you already have.</p>
+        <ul class="facts">
+          <li>Sign in with Google or GitHub</li>
+          <li>Your session stays active between visits</li>
+          <li>Live service status, always one click away</li>
+        </ul>
+      </div>
+
+      <div class="card auth-card">
+        <h2>Sign in</h2>
+        <p class="muted">Choose how you want to continue.</p>
+        <div class="auth-buttons">
+          <button id="login-google" class="btn btn-provider" type="button">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.27-4.74 3.27-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.1a6.6 6.6 0 0 1 0-4.2V7.06H2.18a11 11 0 0 0 0 9.88l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1A11 11 0 0 0 2.18 7.06l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            Continue with Google
+          </button>
+          <button id="login-github" class="btn btn-provider" type="button">
+            <svg viewBox="0 0 16 16" width="20" height="20" aria-hidden="true" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+            Continue with GitHub
+          </button>
+        </div>
+        <p id="auth-error" class="error hidden" role="alert"></p>
+      </div>
+    </section>
+
+    <!-- Signed-in view -->
+    <section id="view-app" class="workspace hidden" aria-labelledby="app-title">
+      <h1 id="app-title">Welcome back.</h1>
+      <p class="lead">You are signed in. Everything you have access to will show up here.</p>
+
+      <div class="grid">
+        <article class="card">
+          <h2>Account</h2>
+          <dl class="details">
+            <div><dt>Name</dt><dd id="d-name"></dd></div>
+            <div><dt>Email</dt><dd id="d-email"></dd></div>
+            <div><dt>Signed in with</dt><dd id="d-provider"></dd></div>
+            <div><dt>Last sign-in</dt><dd id="d-last"></dd></div>
+          </dl>
+        </article>
+
+        <article class="card">
+          <h2>Service status</h2>
+          <p class="status-line"><span id="status-dot" class="dot"></span><strong id="status-text">Checking…</strong></p>
+          <p id="status-detail" class="muted">Contacting the Moonslot API.</p>
+          <button id="status-refresh" class="btn btn-ghost" type="button">Check again</button>
+        </article>
+
+        <article class="card card-wide empty">
+          <h2>Your workspace</h2>
+          <p class="muted">Nothing here yet. Areas and tools you are given access to will appear in this space.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>&copy; <span id="year"></span> Moonslot</span>
+    <span class="footer-status"><span id="footer-dot" class="dot"></span><span id="footer-text">Checking service…</span></span>
+  </footer>
+
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

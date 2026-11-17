@@ -1,0 +1,7 @@
+# Secrets and private data: never commit these
+.env
+.env.*
+data/
+protected/
+node_modules/
+.DS_Store

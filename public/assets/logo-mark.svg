@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="moon" x1="8" y1="8" x2="52" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6F4FD"/><stop offset="1" stop-color="#B3AECF"/>
+    </linearGradient>
+    <mask id="cut"><rect width="64" height="64" fill="#fff"/><circle cx="40" cy="24" r="21" fill="#000"/></mask>
+  </defs>
+  <circle cx="29" cy="35" r="25" fill="url(#moon)" mask="url(#cut)"/>
+  <rect x="44" y="34.5" width="16" height="7" rx="3.5" transform="rotate(-38 52 38)" fill="#7C5CFF"/>
+</svg>
